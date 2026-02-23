@@ -8,28 +8,55 @@
   <script src="https://unpkg.com/feather-icons"></script>
 </head>
 
-<body class="h-screen overflow-hidden font-sans">
+<body class="font-sans">
 
 <nav class="fixed top-0 w-full bg-white shadow-md z-50">
-  <div class="flex items-center justify-between px-8 py-4">
+  <div class="flex items-center justify-between px-6 lg:px-10 py-4">
 
-    <div class="flex items-center gap-4">
-      <img src="src/Logo Dlob.png" class="w-10 h-10" />
-      <h1 class="text-3xl font-bold text-blue-500">DLOB</h1>
+    <!-- Logo Only -->
+    <div class="flex items-center">
+      <img src="src/Logo Dlob.png" class="w-8 h-8 lg:w-10 lg:h-10" />
     </div>
 
-    <div class="flex gap-6 font-medium">
-      <a href="#hero" class="hover:text-blue-500">About</a>
-      <a href="#features" class="hover:text-blue-500">Features</a>
-      <a href="#signup" class="hover:text-blue-500">Create</a>
-      <a href="#footer" class="hover:text-blue-500">Contact</a>
+    <!-- Desktop Menu (Laptop Only) -->
+    <div class="hidden lg:flex gap-8 font-medium text-lg">
+      <a href="#hero" class="hover:text-blue-500 transition">About</a>
+      <a href="#features" class="hover:text-blue-500 transition">Features</a>
+      <a href="#signup" class="hover:text-blue-500 transition">Create</a>
+      <a href="#footer" class="hover:text-blue-500 transition">Contact</a>
     </div>
 
-    <div class="flex gap-4">
-      <a href="#signup" class="bg-blue-500 text-white px-4 py-2 rounded-md shadow-md">
+    <!-- Desktop Buttons -->
+    <div class="hidden lg:flex gap-4">
+      <a href="#signup" class="bg-blue-500 text-white px-5 py-2 rounded-md shadow-md">
         Sign in
       </a>
-      <a href="#signup" class="border px-4 py-2 rounded-md shadow-md">
+      <a href="#signup" class="border px-5 py-2 rounded-md shadow-md">
+        Sign up
+      </a>
+    </div>
+
+    <!-- Hamburger (Mobile & Tablet Only) -->
+    <button id="menuBtn" class="lg:hidden">
+      <i data-feather="menu"></i>
+    </button>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu"
+       class="hidden flex-col bg-white shadow-md px-6 py-6 space-y-5 lg:hidden transition-all duration-300">
+
+    <a href="#hero" class="hover:text-blue-500">About</a>
+    <a href="#features" class="hover:text-blue-500">Features</a>
+    <a href="#signup" class="hover:text-blue-500">Create</a>
+    <a href="#footer" class="hover:text-blue-500">Contact</a>
+
+    <div class="flex flex-col gap-3 pt-4 border-t">
+      <a href="#signup" class="bg-blue-500 text-white px-4 py-2 rounded-md text-center">
+        Sign in
+      </a>
+      <a href="#signup" class="border px-4 py-2 rounded-md text-center">
         Sign up
       </a>
     </div>
@@ -37,11 +64,12 @@
   </div>
 </nav>
 
-<div class="h-screen overflow-y-scroll snap-y snap-mandatory pt-20">
+<div class="snap-y snap-mandatory pt-20">
 
-<section id="hero" class="h-screen snap-start flex items-center justify-between px-16">
+<section id="hero"
+class="min-h-screen snap-start flex flex-col lg:flex-row items-center justify-center lg:justify-between px-6 lg:px-16 gap-10">
 
-  <div class="w-1/3 space-y-6 mx-10">
+  <div class="w-full lg:w-1/3 space-y-6 text-center lg:text-left">
     <div>
       <h1 class="text-4xl font-bold">Make your own design for</h1>
       <h1 id="changingText"
@@ -62,15 +90,16 @@
     </div>
   </div>
 
-  <div class="w-2/3 flex justify-center -mx-10">
+  <div class="w-full lg:w-2/3 flex justify-center">
     <img id="changingImage"
          src="src/Ecommerce-1.png"
-         class="max-h-[500px] transition-all duration-500" />
+         class="w-full max-w-md lg:max-w-xl transition-all duration-500"/>
   </div>
 
 </section>
 
-<section id="features" class="h-screen snap-start bg-gray-100 py-24 px-12">
+<section id="features"
+class="min-h-screen snap-start bg-gray-100 py-20 px-6 lg:px-12">
 
   <div class="text-center mb-16">
     <h2 class="text-4xl font-bold">Make & Search Your Inspired Design</h2>
@@ -115,9 +144,9 @@
   </div>
 </section>
 
-<section id="signup" class="h-screen snap-start flex items-center justify-between bg-blue-100 px-16">
-
-  <div class="w-1/2 max-w-md bg-white p-10 rounded-xl shadow-xl space-y-6 mx-10">
+<section id="signup"
+class="min-h-screen snap-start flex flex-col lg:flex-row items-center justify-center lg:justify-between bg-blue-100 px-6 lg:px-16 gap-12">
+  <div class="w-full lg:w-1/2 max-w-md bg-white p-8 lg:p-10 rounded-xl shadow-xl space-y-6">
 
     <h2 class="text-2xl font-bold">Sign Up</h2>
 
@@ -166,7 +195,7 @@
 
   </div>
 
-  <div class="w-1/2 text-center text-white">
+  <div class="w-full lg:w-1/2 text-center text-white">
     <h1 class="text-7xl font-bold drop-shadow-lg">
       Come join <br>
       <span class="text-blue-500">with us!</span>
@@ -175,7 +204,8 @@
 
 </section>
 
-<section id="footer" class="h-screen snap-start bg-blue-500 text-white flex items-center px-16">
+<section id="footer"
+class="min-h-screen snap-start bg-blue-500 text-white flex flex-col lg:flex-row items-center justify-center px-6 lg:px-16 gap-12">
 
   <div class="w-1/2 space-y-6 text-center">
     <h1 class="text-6xl font-bold">DLOB</h1>
@@ -183,7 +213,7 @@
     <p class="text-sm text-blue-200">© 2026 DLOB</p>
   </div>
 
-  <div class="w-1/2 flex justify-center gap-16">
+ <div class="w-full lg:w-1/2 flex flex-col sm:flex-row justify-center gap-10">
 
     <div>
       <h3 class="font-bold mb-3">Quick Links</h3>
@@ -210,11 +240,37 @@
 
 </div>
 
+<!-- TARUH SCRIPT DI SINI -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
   feather.replace();
 
+  /* ===============================
+     HAMBURGER MENU
+  =============================== */
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  if (menuBtn) {
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+
+      const icon = menuBtn.querySelector("i");
+
+      if (mobileMenu.classList.contains("hidden")) {
+        icon.setAttribute("data-feather", "menu");
+      } else {
+        icon.setAttribute("data-feather", "x");
+      }
+
+      feather.replace();
+    });
+  }
+
+  /* ===============================
+     TOGGLE PASSWORD
+  =============================== */
   window.togglePassword = function () {
     const password = document.getElementById("password");
     const icon = document.getElementById("eyeIcon");
@@ -226,9 +282,13 @@ document.addEventListener("DOMContentLoaded", function () {
       password.type = "password";
       icon.setAttribute("data-feather", "eye");
     }
+
     feather.replace();
   };
 
+  /* ===============================
+     HERO AUTO SLIDER
+  =============================== */
   const texts = [
     { text: "E-commerce", color: "text-green-500", image: "src/Ecommerce-1.png" },
     { text: "Education Web", color: "text-blue-500", image: "src/Education-1.png" },
@@ -240,6 +300,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const changingImage = document.getElementById("changingImage");
 
   function changeHero() {
+    if (!changingText || !changingImage) return;
+
     changingText.style.opacity = 0;
     changingImage.style.opacity = 0;
 
@@ -258,6 +320,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   setInterval(changeHero, 3000);
+
 });
 </script>
 
