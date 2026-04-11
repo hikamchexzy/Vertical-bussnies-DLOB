@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DLOB - Login</title>
+
+    <link rel="icon" href="../assets/Logo Dlob.png">
+    <link rel="stylesheet" href="../src/output.css">
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        .shake {
+            animation: shake 0.3s ease-in-out;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+
+<body class="bg-blue-100 min-h-screen">
+
+    <!-- Overlay -->
+    <div class="fixed inset-0 bg-black/20 backdrop-blur-sm"></div>
+
+    <div class="relative min-h-screen flex items-center justify-center px-4 py-12">
+
+        <!-- CARD -->
+        <div class="glass-card rounded-2xl shadow-2xl w-full max-w-md p-8 lg:p-10 fade-in">
+
+            <!-- LOGO -->
+            <div class="text-center mb-8">
+                <div class="flex items-center justify-center gap-2 mb-3">
+                    <img src="../assets/Logo Dlob.png" class="w-10 h-10">
+                    <h1 class="text-3xl font-bold text-blue-500">DLOB</h1>
+                </div>
+                <p class="text-gray-500 text-sm">Login to continue to your account</p>
+            </div>
+
+            <!-- ERROR -->
+            <div id="errorMessage" class="hidden mb-5 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg text-sm flex items-center gap-2">
+                <i data-feather="alert-circle" class="w-4 h-4"></i>
+                <span id="errorText">Invalid email or password</span>
+            </div>
+
+            <!-- FORM -->
+            <form id="loginForm" class="space-y-6">
+
+                <!-- EMAIL -->
+                <div>
+                    <label class="block text-gray-700 text-sm font-semibold mb-2">Email Address</label>
+                    <input type="email"
+                        id="email"
+                        required
+                        placeholder="admin@dlob.com"
+                        class="w-full border border-gray-300 px-4 py-3 rounded-xl 
+                        focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <!-- PASSWORD -->
+                <div class="relative">
+                    <label class="block text-gray-700 text-sm font-semibold mb-2">Password</label>
+
+                    <input type="password"
+                        id="password"
+                        required
+                        placeholder="••••••••"
+                        class="w-full border border-gray-300 px-4 py-3 pr-12 rounded-xl 
+                        focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+                    <button type="button"
+                        onclick="togglePassword()"
+                        class="absolute right-4 top-[42px] text-gray-500">
+                        <i id="eyeIcon" data-feather="eye"></i>
+                    </button>
+                </div>
+
+                <!-- OPTIONS -->
+                <div class="flex items-center justify-between">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" class="w-4 h-4 text-blue-500">
+                        <span class="text-sm text-gray-600">Remember me</span>
+                    </label>
+                    <a href="#" class="text-sm text-blue-500 hover:text-blue-600">Forgot Password?</a>
+                </div>
+
+                <!-- BUTTON -->
+                <button type="submit"
+                    id="loginBtn"
+                    class="w-full bg-blue-500 text-white py-3 rounded-xl font-semibold cursor-pointer
+                    hover:bg-blue-600 transition shadow-lg">
+                    
+                    <span id="btnText">Login</span>
+
+                    <span id="btnLoader" class="hidden">
+                        <svg class="animate-spin inline w-5 h-5" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.3 0 0 5.3 0 12h4z"></path>
+                        </svg>
+                        Logging in...
+                    </span>
+                </button>
+
+            </form>
+
+            <!-- DIVIDER -->
+            <div class="flex items-center gap-4 my-6">
+                <div class="flex-1 h-px bg-gray-300"></div>
+                <span class="text-sm text-gray-500">or continue with</span>
+                <div class="flex-1 h-px bg-gray-300"></div>
+            </div>
+
+            <!-- SOCIAL -->
+            <div class="flex justify-center gap-6">
+                <img src="../assets/Google icon.png" class="w-8 h-8 cursor-pointer">
+                <img src="../assets/Facebook icon.png" class="w-8 h-8 cursor-pointer">
+                <img src="../assets/Github icon.png" class="w-8 h-8 cursor-pointer">
+            </div>
+
+            <!-- SIGNUP -->
+            <p class="text-center text-gray-600 text-sm mt-6">
+                Don't have an account?
+                <a href="#signup" class="text-blue-500 font-semibold hover:text-blue-600">
+                    Sign up
+                </a>
+            </p>
+
+        </div>
+
+        <!-- FOOTER -->
+        <div class="absolute bottom-10 text-white/30 text-sm hidden lg:block">
+            © 2026 DLOB
+        </div>
+
+    </div>
+
+    <script>
+        feather.replace();
+
+        function togglePassword() {
+            const password = document.getElementById('password');
+            const icon = document.getElementById('eyeIcon');
+
+            if (password.type === 'password') {
+                password.type = 'text';
+                icon.setAttribute('data-feather', 'eye-off');
+            } else {
+                password.type = 'password';
+                icon.setAttribute('data-feather', 'eye');
+            }
+
+            feather.replace();
+        }
+
+        const DEMO = {
+            email: 'admin@dlob.com',
+            password: 'admin123'
+        };
+
+        const form = document.getElementById('loginForm');
+        const btnText = document.getElementById('btnText');
+        const btnLoader = document.getElementById('btnLoader');
+        const error = document.getElementById('errorMessage');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            btnText.classList.add('hidden');
+            btnLoader.classList.remove('hidden');
+
+            setTimeout(() => {
+                  if (email === DEMO.email && password === DEMO.password) {
+                      localStorage.setItem('login', 'true');
+                      window.location.href = 'onboarding.html';  // <-- GANTI KE feed.html
+                  } else {
+                      error.classList.remove('hidden');
+                      btnText.classList.remove('hidden');
+                      btnLoader.classList.add('hidden');
+                  }
+              }, 1000);
+        });
+    </script>
+
+</body>
+</html>
