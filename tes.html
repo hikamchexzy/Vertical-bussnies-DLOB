@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DLOB - Light Mode Shorts</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Hide scrollbar tapi tetap bisa scroll */
+    .videos-container::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .videos-container {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
+      height: 100vh;
+    }
+    
+    .video-item {
+      scroll-snap-align: start;
+      height: 100vh;
+      position: relative;
+    }
+    
+    /* Sidebar light mode */
+    .sidebar-item {
+      transition: all 0.2s ease;
+    }
+    
+    .sidebar-item.active {
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      color: white;
+    }
+    
+    .sidebar-item.active svg {
+      stroke: white;
+    }
+    
+    .sidebar-item:not(.active):hover {
+      background: rgba(0, 0, 0, 0.05);
+      color: #1f2937;
+    }
+    
+    /* Glass search bar light mode */
+    .glass-search {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+    
+    .glass-search:hover {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .glass-search:focus-within {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(59, 130, 246, 0.5);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .glass-search input {
+      background: transparent;
+      outline: none;
+    }
+    
+    .glass-search input::placeholder {
+      color: rgba(0, 0, 0, 0.5);
+    }
+    
+    /* Search results light mode */
+    .search-results {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 1rem;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .search-result-item {
+      transition: background 0.2s ease;
+    }
+    
+    .search-result-item:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+    
+    /* Animasi like */
+    .like-animation {
+      animation: likePop 0.3s ease-out;
+    }
+    
+    @keyframes likePop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+    
+    /* Page transition */
+    .page {
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    /* Side action buttons light mode */
+    .action-btn {
+      transition: all 0.2s ease;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      color: #374151;
+    }
+    
+    .action-btn:hover {
+      background: white;
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Follow button light mode */
+    .follow-btn {
+      background: rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(4px);
+    }
+    
+    .follow-btn:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Custom scroll untuk inbox */
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+    
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 10px;
+    }
+    
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 overflow-hidden">
+
+<div class="flex h-screen overflow-hidden">
+
+  <!-- ========== SIDEBAR KIRI (LIGHT MODE) ========== -->
+  <aside class="w-64 bg-white border-r border-gray-200 flex flex-col fixed h-full z-20 shadow-sm">
+    
+    <!-- Logo -->
+    <div class="px-6 py-6 border-b border-gray-100">
+      <div class="flex items-center gap-2">
+        <div class="flex items-center justify-center w--8 h-8">
+          <img src="../assets/Logo Dlob.png" alt="DLOB Logo" class="w-full h-full object-contain">
+        </div>
+        <h1 class="text-gray-800 text-xl font-bold">DLOB</h1>
+      </div>
+    </div>
+    
+
+
+    <!-- Main Navigation -->
+    <nav class="flex-1 px-3 py-6 space-y-1">
+      <button onclick="switchPage('feed')" id="navFeed" class="sidebar-item active w-full flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+        </svg>
+        <span class="font-medium">Beranda</span>
+      </button>
+      
+      <button onclick="switchPage('inbox')" id="navInbox" class="sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 transition relative">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+        <span class="font-medium">Kotak Masuk</span>
+        <span class="ml-auto bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">3</span>
+      </button>
+      
+    </nav>
+    
+    <!-- Bottom note -->
+    <div class="px-6 py-4 border-t border-gray-100">
+      <p class="text-xs text-gray-400">© 2026 DLOB</p>
+    </div>
+  </aside>
+  
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="flex-1 ml-64 bg-gray-50 overflow-hidden relative">
+    
+    <!-- ========== SEARCH BAR DI TENGAH ATAS (LIGHT MODE) ========== -->
+    <div class="absolute top-6 left-0 right-0 z-30 flex justify-center px-4">
+      <div class="w-full max-w-md">
+        
+        <!-- Search Bar dengan Glass Effect Light -->
+        <div class="glass-search rounded-full px-5 py-2.5 flex items-center gap-3">
+          <!-- Icon Search -->
+          <svg class="w-5 h-5 text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          
+          <!-- Input -->
+          <input type="text" 
+                 id="searchInput"
+                 placeholder="Cari video, akun, atau hashtag..."
+                 class="flex-1 text-gray-700 placeholder-gray-400 text-sm bg-transparent focus:outline-none"
+                 autocomplete="off">
+          
+          <!-- Tombol Clear -->
+          <button id="clearSearch" class="text-gray-400 hover:text-gray-600 transition hidden">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+          
+          <!-- Tombol Voice Search -->
+          <button class="text-gray-500 hover:text-gray-700 transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
+            </svg>
+          </button>
+        </div>
+        
+        <!-- Search Results Dropdown Light Mode -->
+        <div id="searchResults" class="search-results mt-3 hidden overflow-hidden">
+          <div class="py-2">
+            <div class="px-4 py-2 text-gray-400 text-xs font-semibold uppercase tracking-wider">
+              Trending searches
+            </div>
+            
+            <div class="search-result-item flex items-center gap-3 px-4 py-2 cursor-pointer transition">
+              <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+              </svg>
+              <span class="text-gray-700 text-sm">#tailwindcss</span>
+              <span class="text-gray-400 text-xs ml-auto">1.2M views</span>
+            </div>
+            
+            <div class="search-result-item flex items-center gap-3 px-4 py-2 cursor-pointer transition">
+              <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+              </svg>
+              <span class="text-gray-700 text-sm">#webdesign</span>
+              <span class="text-gray-400 text-xs ml-auto">856K views</span>
+            </div>
+            
+            <div class="border-t border-gray-100 my-2"></div>
+            
+            <div class="px-4 py-2 text-gray-400 text-xs font-semibold uppercase tracking-wider">
+              Suggested accounts
+            </div>
+            
+            <div class="search-result-item flex items-center gap-3 px-4 py-2 cursor-pointer transition">
+              <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+              <div>
+                <span class="text-gray-800 text-sm font-medium">@johndoe</span>
+                <p class="text-gray-400 text-xs">Creative Developer</p>
+              </div>
+            </div>
+            
+            <div class="search-result-item flex items-center gap-3 px-4 py-2 cursor-pointer transition">
+              <div class="w-8 h-8 bg-gradient-to-r from-green-400 to-blue-500 rounded-full"></div>
+              <div>
+                <span class="text-gray-800 text-sm font-medium">@sarahcreative</span>
+                <p class="text-gray-400 text-xs">UI/UX Designer</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+
+    <div class="absolute top-6 left-0 right-0 z-30 flex justify-end px-4">
+        <button onclick="switchPage('profile')" id="navProfile" class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-x text-gray-500 transition">
+            <div class="w-5 h-5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+        </button>
+        <button>
+            <i></i>
+        </button>
+    </div>
+    
+    <!-- ========== PAGE: FEED / SHORTS VERTICAL (LIGHT MODE) ========== -->
+    <div id="feedPage" class="page h-full">
+      <div class="videos-container h-full">
+        
+        <!-- Short Video 1 - Light Mode dengan warna soft -->
+        <div class="video-item">
+          <div class="absolute inset-0 bg-gradient-to-br from-blue-400 via-purple-400 to-pink-400">
+            <div class="flex items-center justify-center h-full">
+              <div class="text-white text-center">
+                <div class="text-7xl mb-4">🎵</div>
+                <p class="text-xl font-semibold">Short Video #1</p>
+                <p class="text-sm mt-2 text-white/80">1.2M views • 2 days ago</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Info User & Caption Light Mode -->
+          <div class="absolute bottom-24 left-4 right-20 text-white z-10">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-12 h-12 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center font-bold text-lg shadow-lg">
+                JD
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="font-semibold text-lg drop-shadow-md">@johndoe</span>
+                  <span class="text-xs bg-white/20 backdrop-blur-sm px-2 py-0.5 rounded-full follow-btn cursor-pointer">Follow</span>
+                </div>
+                <p class="text-sm text-white/90 drop-shadow-md mt-1">🔥 Cuma mau share kodingan saya pake Tailwind CSS! #webdev</p>
+                <div class="flex items-center gap-3 mt-2 text-xs text-white/70">
+                  <span>🎵 Original Sound - Creative Dev</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Side Actions Light Mode -->
+          <div class="absolute bottom-24 right-4 space-y-6 z-10">
+            <div class="text-center">
+              <button onclick="likeVideo(this)" class="action-btn w-12 h-12 rounded-full flex items-center justify-center text-2xl shadow-md">
+                ❤️
+              </button>
+              <p class="text-gray-700 text-xs mt-1 like-count font-medium">124K</p>
+            </div>
+            <div class="text-center">
+              <button class="action-btn w-12 h-12 rounded-full flex items-center justify-center text-2xl shadow-md">
+                💬
+              </button>
+              <p class="text-gray-700 text-xs mt-1 font-medium">2.1K</p>
+            </div>
+            <div class="text-center">
+              <button class="action-btn w-12 h-12 rounded-full flex items-center justify-center text-2xl shadow-md">
+                📌
+              </button>
+              <p class="text-gray-700 text-xs mt-1 font-medium">Save</p>
+            </div>
+            <div class="text-center">
+              <button class="action-btn w-12 h-12 rounded-full flex items-center justify-center text-xl shadow-md">
+                ↪️
+              </button>
+              <p class="text-gray-700 text-xs mt-1 font-medium">Share</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Short Video 2 -->
+        <div class="video-item">
+          <div class="absolute inset-0 bg-gradient-to-br from-teal-400 via-cyan-400 to-blue-400">
+            <div class="flex items-center justify-center h-full">
+              <div class="text-white text-center">
+                <div class="text-7xl mb-4">🎬</div>
+                <p class="text-xl font-semibold">Short Video #2</p>
+                <p class="text-sm mt-2 text-white/80">856K views • 5 days ago</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="absolute bottom-24 left-4 right-20 text-white z-10">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-12 h-12 bg-gradient-to-r from-green-400 to-teal-500 rounded-full flex items-center justify-center font-bold text-lg shadow-lg">
+                SA
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="font-semibold text-lg drop-shadow-md">@sarahcreative</span>
+                  <span class="text-xs bg-white/20 backdrop-blur-sm px-2 py-0.5 rounded-full follow-btn cursor-pointer">Follow</span>
+                </div>
+                <p class="text-sm text-white/90 drop-shadow-md mt-1">✨ Tutorial desain UI/UX buat pemula! #desain #uiux</p>
+                <div class="flex items-center gap-3 mt-2 text-xs text-white/70">
+                  <span>🎵 New trending song</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="absolute bottom-24 right-4 space-y-6 z-10">
+            <div class="text-center">
+              <button onclick="likeVideo(this)" class="action-btn w-12 h-12 rounded-full flex items-center justify-center text-2xl shadow-md">
+                ❤️
+              </button>
+              <p class="text-gray-700 text-xs mt-1 like-count font-medium">89K</p>
+            </div>
+            <div class="text-center">
+              <button class="action-btn w-12 h-12 rounded-full flex items-center justify-center text-2xl shadow-md">
+                💬
+              </button>
+              <p class="text-gray-700 text-xs mt-1 font-medium">1.5K</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Short Video 3 -->
+        <div class="video-item">
+          <div class="absolute inset-0 bg-gradient-to-br from-orange-400 via-red-400 to-pink-400">
+            <div class="flex items-center justify-center h-full">
+              <div class="text-white text-center">
+                <div class="text-7xl mb-4">🔥</div>
+                <p class="text-xl font-semibold">Short Video #3</p>
+                <p class="text-sm mt-2 text-white/80">2.3M views • 1 day ago</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="absolute bottom-24 left-4 right-20 text-white z-10">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-12 h-12 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center font-bold text-lg shadow-lg">
+                MT
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="font-semibold text-lg drop-shadow-md">@mikeweb</span>
+                  <span class="text-xs bg-white/20 backdrop-blur-sm px-2 py-0.5 rounded-full follow-btn cursor-pointer">Follow</span>
+                </div>
+                <p class="text-sm text-white/90 drop-shadow-md mt-1">🚀 Tips jadi fullstack developer dalam 3 bulan! #programming</p>
+                <div class="flex items-center gap-3 mt-2 text-xs text-white/70">
+                  <span>🎵 Motivational music</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="absolute bottom-24 right-4 space-y-6 z-10">
+            <div class="text-center">
+              <button onclick="likeVideo(this)" class="action-btn w-12 h-12 rounded-full flex items-center justify-center text-2xl shadow-md">
+                ❤️
+              </button>
+              <p class="text-gray-700 text-xs mt-1 like-count font-medium">345K</p>
+            </div>
+            <div class="text-center">
+              <button class="action-btn w-12 h-12 rounded-full flex items-center justify-center text-2xl shadow-md">
+                💬
+              </button>
+              <p class="text-gray-700 text-xs mt-1 font-medium">5.2K</p>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+    <!-- ========== PAGE: KOTAK MASUK (LIGHT MODE) ========== -->
+    <div id="inboxPage" class="page px-8 py-6 hidden overflow-y-auto h-full custom-scroll">
+      <div class="max-w-4xl mx-auto pt-16">
+        <h1 class="text-2xl font-bold text-gray-800 mb-6">Kotak Masuk</h1>
+        
+        <div class="flex gap-6 border-b border-gray-200 mb-6">
+          <button onclick="switchInboxTab('messages')" id="inboxMessagesTab" class="text-blue-600 pb-3 px-2 border-b-2 border-blue-500 font-semibold">
+            Pesan <span class="ml-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">3</span>
+          </button>
+          <button onclick="switchInboxTab('activities')" id="inboxActivitiesTab" class="text-gray-500 pb-3 px-2 hover:text-gray-700 transition">
+            Aktivitas
+          </button>
+        </div>
+        
+        <div id="inboxMessagesContent">
+          <div class="flex items-start gap-3 p-4 hover:bg-gray-100 rounded-xl transition cursor-pointer">
+            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full"></div>
+            <div>
+              <h3 class="text-gray-800 font-semibold">John Doe</h3>
+              <p class="text-gray-400 text-sm">@johndoe • 2 menit lalu</p>
+              <p class="text-gray-600 mt-1">Halo! Desain websitenya keren banget! 🔥</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start gap-3 p-4 hover:bg-gray-100 rounded-xl transition cursor-pointer">
+            <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-teal-500 rounded-full"></div>
+            <div>
+              <h3 class="text-gray-800 font-semibold">Sarah Ahmed</h3>
+              <p class="text-gray-400 text-sm">@sarahcreative • 1 jam lalu</p>
+              <p class="text-gray-600 mt-1">Mau tanya tentang collaboration untuk project web design 🙌</p>
+              <span class="text-blue-500 text-xs">Mengetik...</span>
+            </div>
+          </div>
+        </div>
+        
+        <div id="inboxActivitiesContent" class="hidden">
+          <div class="flex items-center gap-4 p-4 hover:bg-gray-100 rounded-xl transition">
+            <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-2xl">❤️</div>
+            <div>
+              <p class="text-gray-800"><span class="font-semibold">@creative_designer</span> menyukai video Anda</p>
+              <p class="text-gray-400 text-xs">2 jam lalu</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 p-4 hover:bg-gray-100 rounded-xl transition">
+            <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-2xl">💬</div>
+            <div>
+              <p class="text-gray-800"><span class="font-semibold">@web_dev</span> mengomentari video Anda</p>
+              <p class="text-gray-400 text-xs">5 jam lalu</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- ========== PAGE: PROFILE ========== -->
+    <div id="profilePage" class="page hidden flex items-center justify-center h-full">
+      <div class="text-center">
+        <div class="text-6xl mb-4">👤</div>
+        <h2 class="text-2xl font-bold text-gray-800">Profil Saya</h2>
+        <p class="text-gray-500 mt-2">Coming Soon</p>
+      </div>
+    </div>
+    
+  </main>
+  
+</div>
+
+<script>
+// Search functionality
+const searchInput = document.getElementById('searchInput');
+const searchResults = document.getElementById('searchResults');
+const clearBtn = document.getElementById('clearSearch');
+
+searchInput.addEventListener('focus', () => {
+  searchResults.classList.remove('hidden');
+});
+
+searchInput.addEventListener('input', (e) => {
+  if (e.target.value.length > 0) {
+    clearBtn.classList.remove('hidden');
+  } else {
+    clearBtn.classList.add('hidden');
+  }
+});
+
+clearBtn.addEventListener('click', () => {
+  searchInput.value = '';
+  clearBtn.classList.add('hidden');
+  searchInput.focus();
+});
+
+document.addEventListener('click', (e) => {
+  if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+    searchResults.classList.add('hidden');
+  }
+});
+
+// Like functionality
+function likeVideo(button) {
+  const likeCount = button.parentElement.querySelector('.like-count');
+  let count = parseInt(likeCount.textContent.replace(/[^0-9]/g, ''));
+  
+  if (button.classList.contains('liked')) {
+    count--;
+    button.classList.remove('liked');
+    button.style.color = '#374151';
+  } else {
+    count++;
+    button.classList.add('liked');
+    button.style.color = '#ef4444';
+    button.classList.add('like-animation');
+    setTimeout(() => button.classList.remove('like-animation'), 300);
+  }
+  
+  likeCount.textContent = count >= 1000 ? (count / 1000).toFixed(1) + 'K' : count;
+}
+
+// Page switching
+let currentPage = 'feed';
+
+function switchPage(page) {
+  if (currentPage === page) return;
+  
+  const pages = ['feed', 'inbox', 'profile'];
+  pages.forEach(p => {
+    const el = document.getElementById(`${p}Page`);
+    if (el) el.classList.add('hidden');
+  });
+  
+  document.getElementById(`${page}Page`).classList.remove('hidden');
+  
+  const items = ['feed', 'inbox', 'profile'];
+  items.forEach(item => {
+    const btn = document.getElementById(`nav${item.charAt(0).toUpperCase() + item.slice(1)}`);
+    if (btn) {
+      if (item === page) {
+        btn.classList.add('active');
+        btn.classList.remove('text-gray-500');
+      } else {
+        btn.classList.remove('active');
+        btn.classList.add('text-gray-500');
+      }
+    }
+  });
+  
+  currentPage = page;
+}
+
+// Inbox tabs
+function switchInboxTab(tab) {
+  const messagesTab = document.getElementById('inboxMessagesTab');
+  const activitiesTab = document.getElementById('inboxActivitiesTab');
+  const messagesContent = document.getElementById('inboxMessagesContent');
+  const activitiesContent = document.getElementById('inboxActivitiesContent');
+  
+  if (tab === 'messages') {
+    messagesTab.classList.add('text-blue-600', 'border-blue-500', 'font-semibold');
+    messagesTab.classList.remove('text-gray-500', 'border-transparent');
+    activitiesTab.classList.remove('text-blue-600', 'border-blue-500', 'font-semibold');
+    activitiesTab.classList.add('text-gray-500', 'border-transparent');
+    messagesContent.classList.remove('hidden');
+    activitiesContent.classList.add('hidden');
+  } else {
+    activitiesTab.classList.add('text-blue-600', 'border-blue-500', 'font-semibold');
+    activitiesTab.classList.remove('text-gray-500', 'border-transparent');
+    messagesTab.classList.remove('text-blue-600', 'border-blue-500', 'font-semibold');
+    messagesTab.classList.add('text-gray-500', 'border-transparent');
+    activitiesContent.classList.remove('hidden');
+    messagesContent.classList.add('hidden');
+  }
+}
+</script>
+
+</body>
+</html>

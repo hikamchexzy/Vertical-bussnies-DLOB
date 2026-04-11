@@ -4,9 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DLOB</title>
-  <link rel="stylesheet" href="output.css" />
-  <link rel="icon" type="image/x-icon" href="src/Logo Dlob.png">
+  <link rel="stylesheet" href="src/output.css" />
+  <link rel="icon" type="image/x-icon" href="assets/Logo Dlob.png">
   <script src="https://unpkg.com/feather-icons"></script>
+  <script src="path/to/dist/feather.js"></script>
 </head>
 
 <body class="font-sans">
@@ -16,12 +17,12 @@
 
     <!-- Logo Only -->
     <div class="flex items-center gap-3">
-      <img src="src/Logo Dlob.png" class="w-8 h-8 lg:w-10 lg:h-10" />
+      <img src="assets/Logo Dlob.png" class="w-8 h-8 lg:w-10 lg:h-10" />
       <h1 class="text-blue-500 text-xl font-bold">DLOB</h1>
     </div>
 
     <!-- Desktop Menu (Laptop Only) -->
-    <div class="hidden lg:flex gap-8 font-medium text-lg">
+    <div class="hidden lg:flex gap-8 font-medium text-white text-lg bg-blue-500/50 backdrop-blur-md px-6 py-3 rounded-full">
       <a href="#hero" class="hover:text-blue-500 transition">About</a>
       <a href="#features" class="hover:text-blue-500 transition">Features</a>
       <a href="#signup" class="hover:text-blue-500 transition">Create</a>
@@ -33,7 +34,7 @@
       <a href="#signup" class="bg-blue-500 text-white px-5 py-2 rounded-md shadow-md">
         Sign in
       </a>
-      <a href="#signup" class="border px-5 py-2 rounded-md shadow-md">
+      <a href="#signup" class="border border-blue-500 backdrop-blur-md px-5 py-2 rounded-md shadow-md">
         Sign up
       </a>
     </div>
@@ -58,7 +59,7 @@
       <a href="#signup" class="bg-blue-500 text-white px-4 py-2 rounded-md text-center">
         Sign in
       </a>
-      <a href="#signup" class="border px-4 py-2 rounded-md text-center">
+      <a href="#signup" class="border border-blue-500 text-blue-500 px-4 py-2 rounded-md text-center">
         Sign up
       </a>
     </div>
@@ -94,7 +95,7 @@ class="min-h-screen snap-start flex flex-col lg:flex-row items-center justify-ce
 
   <div class="w-full lg:w-2/3 flex justify-center">
     <img id="changingImage"
-         src="src/Ecommerce-1.png"
+         src="assets/Ecommerce-1.png"
          class="w-full max-w-md lg:max-w-xl transition-all duration-500"/>
   </div>
 
@@ -113,7 +114,7 @@ class="min-h-screen snap-start bg-gray-100 py-20 px-6 lg:px-12">
   <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-10">
 
     <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition">
-      <img src="src/beranda.png"
+      <img src="assets/beranda.png"
            class="h-48 w-full rounded-xl object-cover mb-6" />
       <h3 class="text-xl font-semibold mb-3">Endless Design Feed</h3>
       <p class="text-gray-500">
@@ -122,7 +123,7 @@ class="min-h-screen snap-start bg-gray-100 py-20 px-6 lg:px-12">
     </div>
 
     <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition">
-      <img src="src/chat massage.png"
+      <img src="assets/chat massage.png"
            class="h-48 w-full rounded-xl object-cover mb-6" />
       <h3 class="text-xl font-semibold mb-3">
         Chat & Comment with Designers
@@ -133,7 +134,7 @@ class="min-h-screen snap-start bg-gray-100 py-20 px-6 lg:px-12">
     </div>
 
     <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition">
-      <img src="src/Other Profile.png"
+      <img src="assets/Other Profile.png"
            class="h-48 w-full rounded-xl object-cover mb-6" />
       <h3 class="text-xl font-semibold mb-3">
         Save & Build Collection
@@ -184,9 +185,9 @@ class="min-h-screen snap-start flex flex-col lg:flex-row items-center justify-ce
     </div>
 
     <div class="flex justify-center gap-6">
-      <img src="src/Google icon.png" class="w-8 h-8 cursor-pointer" />
-      <img src="src/Facebook icon.png" class="w-8 h-8 cursor-pointer" />
-      <img src="src/Github icon.png" class="w-8 h-8 cursor-pointer" />
+      <img src="assets/Google icon.png" class="w-8 h-8 cursor-pointer" />
+      <img src="assets/Facebook icon.png" class="w-8 h-8 cursor-pointer" />
+      <img src="assets/Github icon.png" class="w-8 h-8 cursor-pointer" />
     </div>
 
     <button class="w-full bg-blue-500 text-white py-3 rounded-xl font-semibold">
@@ -292,9 +293,9 @@ document.addEventListener("DOMContentLoaded", function () {
      HERO AUTO SLIDER
   =============================== */
   const texts = [
-    { text: "E-commerce", color: "text-green-500", image: "src/Ecommerce-1.png" },
-    { text: "Education Web", color: "text-blue-500", image: "src/Education-1.png" },
-    { text: "Company Profile", color: "text-purple-500", image: "src/Portofolio-1.png" }
+    { text: "E-commerce", color: "text-green-500", image: "assets/Ecommerce-1.png" },
+    { text: "Education Web", color: "text-blue-500", image: "assets/Education-1.png" },
+    { text: "Company Profile", color: "text-purple-500", image: "assets/Portofolio-1.png" }
   ];
 
   let currentIndex = 0;
@@ -314,7 +315,7 @@ document.addEventListener("DOMContentLoaded", function () {
       changingText.classList.remove("text-green-500","text-blue-500","text-purple-500");
       changingText.classList.add(texts[currentIndex].color);
 
-      changingImage.src = texts[currentIndex].image;
+      changingImage.src  = texts[currentIndex].image;
 
       changingText.style.opacity = 1;
       changingImage.style.opacity = 1;
