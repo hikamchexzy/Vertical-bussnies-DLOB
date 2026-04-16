@@ -131,7 +131,7 @@
         <!-- ========== SEARCH BAR DI TENGAH ATAS ========== -->
         <div class="absolute top-6 left-0 right-0 z-30 flex justify-center px-4">
             <div class="w-full max-w-md">
-                <div class="rounded-full px-5 py-2.5 flex items-center gap-3 bg-white/70 backdrop-blur-md border border-gray-200 shadow-sm hover:bg-white/85 transition-all duration-300 focus-within:bg-white/95 focus-within:border-blue-500/50">
+                <div class="rounded-full px-5 py-2.5 flex items-center gap-3 bg-white/70 backdrop-blur-md border-2 border-white shadow-sm hover:bg-white/85 transition-all duration-300 focus-within:bg-white/95 focus-within:border-blue-500/50">
                     <i data-feather="search" class="w-5 h-5 text-gray-500"></i>
                     <input type="text" 
                            id="searchInput"
@@ -147,7 +147,7 @@
 
         <!-- Profile dropdown di kanan atas -->
         <div class="absolute top-6 right-0 z-30 flex justify-end px-4">
-            <div class="rounded-full px-5 py-2.5 flex items-center gap-3 bg-white/70 backdrop-blur-md border border-gray-200 shadow-sm">
+            <div class="rounded-full px-5 py-2.5 flex items-center gap-3 bg-white/70 backdrop-blur-md border-2 border-white shadow-sm">
                 <button>
                     <i data-feather="chevron-down" class="w-5 h-5 text-gray-500"></i>
                 </button>
@@ -171,10 +171,10 @@
                     
                     <!-- Short Video 1 -->
                     <div class="snap-start h-screen relative">
-                        <div class="absolute inset-0 bg-gray-800">
+                        <div class="absolute inset-0 bg-linear-to-r from-sky-200 to-blue-500 backdrop-blur-sm">
                             <div class="flex items-center justify-center h-full">
                                 <div class="text-white text-center text-xl font-bold">
-                                    <img src="../assets/chat massage.png" alt="" class="max-w-3xl max-h-3xl object-contain">
+                                    <img src="../assets/chat massage.png" alt="" class="max-w-3xl max-h-3xl object-contain backdrop-blur-3xl">
                                     <p>...</p>
                                 </div>
                             </div>
@@ -202,25 +202,25 @@
                         <!-- Side Actions -->
                         <div class="absolute bottom-24 right-4 space-y-6 z-10">
                             <div class="text-center">
-                                <button onclick="likeVideo(this)" class="w-12 h-12 rounded-full flex items-center justify-center shadow-md bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-200 hover:scale-105">
+                                <button onclick="likeVideo(this)" class="w-12 h-12 rounded-full flex items-center justify-center shadow-md border-2 border-gray-300 bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-200 hover:scale-105">
                                     <i data-feather="heart" class="w-6 h-6 text-gray-700"></i>
                                 </button>
                                 <p class="text-white text-xs mt-1 like-count font-medium">124</p>
                             </div>
                             <div class="text-center">
-                                <button class="w-12 h-12 rounded-full flex items-center justify-center shadow-md bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-200 hover:scale-105">
+                                <button class="w-12 h-12 rounded-full flex items-center justify-center shadow-md border-2 border-gray-300 bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-200 hover:scale-105">
                                     <i data-feather="message-circle" class="w-6 h-6 text-gray-700"></i>
                                 </button>
                                 <p class="text-white text-xs mt-1 font-medium">20</p>
                             </div>
                             <div class="text-center">
-                                <button class="w-12 h-12 rounded-full flex items-center justify-center shadow-md bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-200 hover:scale-105">
+                                <button class="w-12 h-12 rounded-full flex items-center justify-center shadow-md border-2 border-gray-300 bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-200 hover:scale-105">
                                     <i data-feather="bookmark" class="w-6 h-6 text-gray-700"></i>
                                 </button>
                                 <p class="text-white text-xs mt-1 font-medium">Save</p>
                             </div>
                             <div class="text-center">
-                                <button class="w-12 h-12 rounded-full flex items-center justify-center shadow-md bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-200 hover:scale-105">
+                                <button class="w-12 h-12 rounded-full flex items-center justify-center shadow-md border-2 border-gray-300 bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-200 hover:scale-105">
                                     <i data-feather="share-2" class="w-6 h-6 text-gray-700"></i>
                                 </button>
                                 <p class="text-white text-xs mt-1 font-medium">Share</p>
@@ -230,10 +230,10 @@
                     
                     <!-- Short Video 2 -->
                     <div class="snap-start h-screen relative">
-                        <div class="absolute inset-0 bg-gray-800">
+                        <div class="absolute inset-0 bg-linear-to-br from-sky-200 to-blue-500 backdrop-blur-sm">
                             <div class="flex items-center justify-center h-full">
                                 <div class="text-white text-center text-xl font-bold">
-                                    <img src="../assets/chat massage.png" alt="" class="max-w-3xl max-h-3xl object-contain">
+                                    <img src="../assets/chat massage.png" alt="" class="max-w-3xl max-h-3xl object-contain backdrop-blur-3xl">
                                     <p>...</p>
                                 </div>
                             </div>
@@ -259,25 +259,25 @@
                         
                         <div class="absolute bottom-24 right-4 space-y-6 z-10">
                             <div class="text-center">
-                                <button onclick="likeVideo(this)" class="w-12 h-12 rounded-full flex items-center justify-center shadow-md bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-200 hover:scale-105">
+                                <button onclick="likeVideo(this)" class="w-12 h-12 rounded-full flex items-center justify-center shadow-md border-2 border-gray-300 bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-200 hover:scale-105">
                                     <i data-feather="heart" class="w-6 h-6 text-gray-700"></i>
                                 </button>
                                 <p class="text-white text-xs mt-1 like-count font-medium">89</p>
                             </div>
                             <div class="text-center">
-                                <button class="w-12 h-12 rounded-full flex items-center justify-center shadow-md bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-200 hover:scale-105">
+                                <button class="w-12 h-12 rounded-full flex items-center justify-center shadow-md border-2 border-gray-300 bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-200 hover:scale-105">
                                     <i data-feather="message-circle" class="w-6 h-6 text-gray-700"></i>
                                 </button>
                                 <p class="text-white text-xs mt-1 font-medium">15</p>
                             </div>
                             <div class="text-center">
-                                <button class="w-12 h-12 rounded-full flex items-center justify-center shadow-md bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-200 hover:scale-105">
+                                <button class="w-12 h-12 rounded-full flex items-center justify-center shadow-md border-2 border-gray-300 bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-200 hover:scale-105">
                                     <i data-feather="bookmark" class="w-6 h-6 text-gray-700"></i>
                                 </button>
                                 <p class="text-white text-xs mt-1 font-medium">Save</p>
                             </div>
                             <div class="text-center">
-                                <button class="w-12 h-12 rounded-full flex items-center justify-center shadow-md bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-200 hover:scale-105">
+                                <button class="w-12 h-12 rounded-full flex items-center justify-center shadow-md border-2 border-gray-300 bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-200 hover:scale-105">
                                     <i data-feather="share-2" class="w-6 h-6 text-gray-700"></i>
                                 </button>
                                 <p class="text-white text-xs mt-1 font-medium">Share</p>
@@ -287,10 +287,10 @@
                     
                     <!-- Short Video 3 -->
                     <div class="snap-start h-screen relative">
-                        <div class="absolute inset-0 bg-gray-800">
+                        <div class="absolute inset-0 bg-linear-to-tr from-sky-200 to-blue-500 backdrop-blur-sm">
                             <div class="flex items-center justify-center h-full">
                                 <div class="text-white text-center text-xl font-bold">
-                                    <img src="../assets/chat massage.png" alt="" class="max-w-3xl max-h-3xl object-contain">
+                                    <img src="../assets/chat massage.png" alt="" class="max-w-3xl max-h-3xl object-contain backdrop-blur-3xl">
                                     <p>...</p>
                                 </div>
                             </div>
@@ -316,25 +316,25 @@
                         
                         <div class="absolute bottom-24 right-4 space-y-6 z-10">
                             <div class="text-center">
-                                <button onclick="likeVideo(this)" class="w-12 h-12 rounded-full flex items-center justify-center shadow-md bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-200 hover:scale-105">
+                                <button onclick="likeVideo(this)" class="w-12 h-12 rounded-full flex items-center justify-center shadow-md border-2 border-gray-300 bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-200 hover:scale-105">
                                     <i data-feather="heart" class="w-6 h-6 text-gray-700"></i>
                                 </button>
                                 <p class="text-white text-xs mt-1 like-count font-medium">345</p>
                             </div>
                             <div class="text-center">
-                                <button class="w-12 h-12 rounded-full flex items-center justify-center shadow-md bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-200 hover:scale-105">
+                                <button class="w-12 h-12 rounded-full flex items-center justify-center shadow-md border-2 border-gray-300 bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-200 hover:scale-105">
                                     <i data-feather="message-circle" class="w-6 h-6 text-gray-700"></i>
                                 </button>
                                 <p class="text-white text-xs mt-1 font-medium">52</p>
                             </div>
                             <div class="text-center">
-                                <button class="w-12 h-12 rounded-full flex items-center justify-center shadow-md bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-200 hover:scale-105">
+                                <button class="w-12 h-12 rounded-full flex items-center justify-center shadow-md border-2 border-gray-300 bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-200 hover:scale-105">
                                     <i data-feather="bookmark" class="w-6 h-6 text-gray-700"></i>
                                 </button>
                                 <p class="text-white text-xs mt-1 font-medium">Save</p>
                             </div>
                             <div class="text-center">
-                                <button class="w-12 h-12 rounded-full flex items-center justify-center shadow-md bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-200 hover:scale-105">
+                                <button class="w-12 h-12 rounded-full flex items-center justify-center shadow-md border-2 border-gray-300 bg-white/90 backdrop-blur-sm hover:bg-white transition-all duration-200 hover:scale-105">
                                     <i data-feather="share-2" class="w-6 h-6 text-gray-700"></i>
                                 </button>
                                 <p class="text-white text-xs mt-1 font-medium">Share</p>
