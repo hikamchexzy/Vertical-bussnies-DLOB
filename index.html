@@ -12,17 +12,17 @@
 
 <body class="font-sans">
 
-<nav class="fixed top-0 w-full bg-white shadow-md z-50">
+<nav class="fixed top-0 w-full bg-gradient-to-l from-sky-200 to-blue-500 shadow-md z-50">
   <div class="flex items-center justify-between px-6 lg:px-10 py-4">
 
     <!-- Logo Only -->
     <div class="flex items-center gap-3">
       <img src="assets/Logo Dlob.png" class="w-8 h-8 lg:w-10 lg:h-10" />
-      <h1 class="text-blue-500 text-xl font-bold">DLOB</h1>
+      <h1 class="text-white text-xl font-bold">DLOB</h1>
     </div>
 
     <!-- Desktop Menu (Laptop Only) -->
-    <div class="hidden lg:flex gap-8 font-medium text-white text-lg bg-blue-500/50 backdrop-blur-md px-6 py-3 rounded-full">
+    <div class="hidden lg:flex gap-8 font-medium text-white text-lg bg-white/70 backdrop-blur-md border-2 border-white px-6 py-3 rounded-full">
       <a href="#hero" class="hover:text-blue-500 transition">About</a>
       <a href="#features" class="hover:text-blue-500 transition">Features</a>
       <a href="#signup" class="hover:text-blue-500 transition">Create</a>
@@ -31,10 +31,10 @@
 
     <!-- Desktop Buttons -->
     <div class="hidden lg:flex gap-4">
-      <a href="view/login.html" class="bg-blue-500 text-white px-5 py-2 rounded-md shadow-md">
+      <a href="view/login.html" class="border-2 border-white bg-white text-blue-500 font-medium px-5 py-2 rounded-md shadow-md">
         Login
       </a>
-      <a href="#signup" class="border border-blue-500 backdrop-blur-md px-5 py-2 rounded-md shadow-md">
+      <a href="#signup" class="border-2 border-white text-white bg-white/20 font-medium px-5 py-2 rounded-md shadow-md">
         Sign up
       </a>
     </div>
@@ -102,7 +102,7 @@ class="min-h-screen snap-start flex flex-col lg:flex-row items-center justify-ce
 </section>
 
 <section id="features"
-class="min-h-screen snap-start bg-gray-100 py-20 px-6 lg:px-12">
+class="min-h-screen snap-start bg-gradient-to-b from-white to-blue-100 py-20 px-6 lg:px-12">
 
   <div class="text-center mb-16">
     <h2 class="text-4xl font-bold">Make & Search Your Inspired Design</h2>
@@ -148,9 +148,9 @@ class="min-h-screen snap-start bg-gray-100 py-20 px-6 lg:px-12">
 </section>
 
 <section id="signup"
-class="min-h-screen snap-start flex flex-col lg:flex-row items-center justify-center lg:justify-between bg-blue-100 px-6 lg:px-16 gap-12">
+class="min-h-screen snap-start flex flex-col lg:flex-row items-center justify-center lg:justify-between bg-gradient-to-b from-blue-100 to-blue-500 px-6 lg:px-16 gap-12">
   <!-- card -->
-<div class="w-full lg:w-1/2 max-w-md bg-white p-8 lg:p-10 rounded-xl shadow-xl space-y-6">
+<div class="w-full lg:w-1/2 max-w-md bg-white p-8 lg:px-10 rounded-xl shadow-xl space-y-6">
 
 <!-- logo -->
   <div class="text-center mb-8">
@@ -235,38 +235,65 @@ class="min-h-screen snap-start flex flex-col lg:flex-row items-center justify-ce
 </section>
 
 <section id="footer"
-class="min-h-screen snap-start bg-blue-500 text-white flex flex-col lg:flex-row items-center justify-center px-6 lg:px-16 gap-12">
+class="min-h-screen snap-start bg-blue-500 text-white flex flex-col lg:flex-row items-center justify-center px-6 lg:px-16 py-16 gap-12">
 
-  <div class="w-1/2 space-y-6 text-center">
-    <h1 class="text-6xl font-bold">DLOB</h1>
-    <p>Create your own digital journey with us.</p>
-    <p class="text-sm text-blue-200">© 2026 DLOB</p>
+  <!-- LEFT (Branding) -->
+  <div class="w-full lg:w-1/2 space-y-6 text-center lg:text-left">
+    <div class="flex items-center">
+      <h1 class="text-6xl font-bold backdrop-blur-md">DLOB</h1>
+      <img src="assets/Logo Dlob.png" alt="" class="w-15 h-15 ml-3 backdrop-blur-md ">
+    </div>
+    <p class="text-lg">Create your own digital journey with us.</p>
+
+    <!-- Social Media -->
+    <div class="flex justify-center lg:justify-start gap-4 mt-4">
+      <i data-feather="instagram" class="cursor-pointer hover:scale-110 transition"></i>
+      <i data-feather="twitter" class="cursor-pointer hover:scale-110 transition"></i>
+      <i data-feather="github" class="cursor-pointer hover:scale-110 transition"></i>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="mt-4 flex flex-col sm:flex-row items-center gap-2">
+      <button class="border-2 border-white text-white bg-white/20 backdrop-blur-md font-medium px-4 py-2 rounded hover:bg-blue-100 transition">
+        Subscribe
+      </button>
+    </div>
+
+    <p class="text-sm text-blue-200 mt-4">© 2026 DLOB</p>
   </div>
 
- <div class="w-full lg:w-1/2 flex flex-col sm:flex-row justify-center gap-10">
+  <!-- Divider -->
+  <div class="hidden lg:block w-px bg-blue-300 h-40"></div>
 
+  <!-- RIGHT (Links) -->
+  <div class="w-full lg:w-1/2 flex flex-col sm:flex-row justify-center gap-10 text-center lg:text-left">
+
+    <!-- Quick Links -->
     <div>
-      <h3 class="font-bold mb-3">Quick Links</h3>
-      <p>About</p>
-      <p>Explore</p>
-      <p>Help Center</p>
+      <h3 class="font-semibold text-lg mb-3 tracking-wide">Quick Links</h3>
+      <p class="hover:text-blue-200 cursor-pointer transition duration-300 hover:translate-y-[-2px]">About</p>
+      <p class="hover:text-blue-200 cursor-pointer transition duration-300 hover:translate-y-[-2px]">Explore</p>
+      <p class="hover:text-blue-200 cursor-pointer transition duration-300 hover:translate-y-[-2px]">Help Center</p>
     </div>
 
+    <!-- Contact -->
     <div>
-      <h3 class="font-bold mb-3">Contact</h3>
-      <p>support@dlob.com</p>
-      <p>+62 812-3456-7890</p>
+      <h3 class="font-semibold text-lg mb-3 tracking-wide">Contact</h3>
+      <p class="hover:text-blue-200 transition">support@dlob.com</p>
+      <p class="hover:text-blue-200 transition">+62 812-3456-7890</p>
     </div>
 
+    <!-- Policies -->
     <div>
-      <h3 class="font-bold mb-3">Policies</h3>
-      <p>Terms</p>
-      <p>Privacy</p>
+      <h3 class="font-semibold text-lg mb-3 tracking-wide">Policies</h3>
+      <p class="hover:text-blue-200 cursor-pointer transition duration-300 hover:translate-y-[-2px]">Terms</p>
+      <p class="hover:text-blue-200 cursor-pointer transition duration-300 hover:translate-y-[-2px]">Privacy</p>
     </div>
 
   </div>
 
 </section>
+
 
 </div>
 
